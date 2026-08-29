@@ -3,9 +3,9 @@ import { expect, test } from "@playwright/test";
 
 test("presents identity, direct navigation, and a complete case study", async ({ page, isMobile }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Ideas into");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Building");
   if (isMobile) {
-    await page.getByRole("button", { name: "Menu" }).click();
+    await page.getByRole("button", { name: "Open menu" }).click();
     await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible();
     await page.getByRole("button", { name: /Close/ }).click();
   } else {

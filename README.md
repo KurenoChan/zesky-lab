@@ -29,9 +29,14 @@ Playwright requires a Chromium browser (`npx playwright install chromium`) befor
 - `src/app/projects/[slug]/page.tsx` generates addressable case studies and metadata from the shared project repository.
 - `src/data/portfolio.ts` is the current content source. It deliberately contains no JSX, CSS classes, or animation settings.
 - `src/types/portfolio.ts` defines the content contract that future sources and LabGround can consume.
-- Client Components are restricted to the responsive menu and GSAP-enhanced lab index. Content, metadata, and routes stay server-rendered.
+- `src/components/layout`, `navigation`, `motion`, and `ui` separate stable responsibilities without creating speculative folders.
+- Client Components are restricted to the responsive menu, Lenis enhancement, and GSAP-enhanced lab index. Content, metadata, and routes stay server-rendered.
 
 Data flows from typed content records through repository selectors into Server Components. Interactive children receive only the serializable data they need.
+
+Lenis runs only for fine-pointer users who have not requested reduced motion. Touch devices retain native scrolling.
+
+See `docs/design-direction.md` for the current storytelling and visual rationale.
 
 ## Editing content
 
