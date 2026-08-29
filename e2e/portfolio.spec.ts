@@ -1,0 +1,28 @@
+import AxeBuilder from "@axe-core/playwright";
+import { expect, test } from "@playwright/test";
+
+test("presents identity, direct navigation, and a complete case study", async ({ page, isMobile }) => {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Ideas into");
+  if (isMobile) {
+    await page.getByRole("button", { name: "Menu" }).click();
+    await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible();
+    await page.getByRole("button", { name: /Close/ }).click();
+  } else {
+    await expect(page.getByRole("navigation", { name: "Primary navigation" })).toBeVisible();
+  }
+  await page.getByRole("link", { name: /Read case study/ }).first().click();
+  await expect(page).toHaveURL(/\/projects\/zesky-lab$/);
+  await expect(page.getByRole("heading", { name: "Architecture" })).toBeVisible();
+});
+
+test("has no automatically detectable critical accessibility violations", async ({ page }) => {
+  await page.goto("/");
+  const results = await new AxeBuilder({ page }).analyze();
+  expect(results.violations.filter(({ impact }) => impact === "critical")).toEqual([]);
+});
+
+test("shows the project not-found experience", async ({ page }) => {
+  await page.goto("/projects/not-a-project");
+  await expect(page.getByRole("heading", { name: "Signal lost." })).toBeVisible();
+});
