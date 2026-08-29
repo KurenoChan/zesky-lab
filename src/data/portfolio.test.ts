@@ -9,8 +9,8 @@ describe("portfolio repository", () => {
   });
 
   it("returns only projects marked as featured", () => {
-    expect(getFeaturedProjects()).not.toHaveLength(0);
-    expect(getFeaturedProjects().every(({ featured }) => featured)).toBe(true);
+    expect(getFeaturedProjects().map(({ slug }) => slug)).toEqual(["dmit-frontend-web"]);
+    expect(getFeaturedProjects()).not.toContainEqual(expect.objectContaining({ slug: "zesky-lab" }));
   });
 
   it("keeps collaborative work explicitly attributed", () => {
@@ -22,6 +22,6 @@ describe("portfolio repository", () => {
   it("provides deterministic project neighbors", () => {
     const neighbors = getProjectNeighbors("zesky-lab");
     expect(neighbors.previous?.slug).toBe("kisora-studio");
-    expect(neighbors.next?.slug).toBe("learning-portal");
+    expect(neighbors.next?.slug).toBe("dmit-frontend-web");
   });
 });

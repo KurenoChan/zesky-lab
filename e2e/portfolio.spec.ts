@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 
 test("presents identity, direct navigation, and a complete case study", async ({ page, isMobile }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Building");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Ideas become");
   if (isMobile) {
     await page.getByRole("button", { name: "Open menu" }).click();
     await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible();
@@ -11,8 +11,8 @@ test("presents identity, direct navigation, and a complete case study", async ({
   } else {
     await expect(page.getByRole("navigation", { name: "Primary navigation" })).toBeVisible();
   }
-  await page.getByRole("link", { name: /Read case study/ }).first().click();
-  await expect(page).toHaveURL(/\/projects\/zesky-lab$/);
+  await page.getByRole("link", { name: /Open DMIT Fingerprint System case terminal/ }).click();
+  await expect(page).toHaveURL(/\/projects\/dmit-frontend-web$/);
   await expect(page.getByRole("heading", { name: "Architecture" })).toBeVisible();
 });
 

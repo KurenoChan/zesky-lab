@@ -30,7 +30,7 @@ Playwright requires a Chromium browser (`npx playwright install chromium`) befor
 - `src/data/portfolio.ts` is the current content source. It deliberately contains no JSX, CSS classes, or animation settings.
 - `src/types/portfolio.ts` defines the content contract that future sources and LabGround can consume.
 - `src/components/layout`, `navigation`, `motion`, and `ui` separate stable responsibilities without creating speculative folders.
-- Client Components are restricted to the responsive menu, Lenis enhancement, and GSAP-enhanced lab index. Content, metadata, and routes stay server-rendered.
+- Client Components are restricted to the responsive menu, first-visit intro, project transition, Lenis enhancement, and GSAP-enhanced lab index. Content, metadata, and routes stay server-rendered.
 
 Data flows from typed content records through repository selectors into Server Components. Interactive children receive only the serializable data they need.
 
@@ -39,6 +39,12 @@ Lenis runs only for fine-pointer users who have not requested reduced motion. To
 See `docs/design-direction.md` for the current storytelling and visual rationale.
 
 ## Editing content
+
+Featured projects are deliberately curated with each project's `featured` flag. GitHub is an enrichment source, not the editorial CMS: add a `githubRepository` owner/name to retrieve current language and update metadata, while keeping role, ownership, architecture, and case-study writing in the typed project record. Public repositories work without configuration. Private repositories require an optional server-only `GITHUB_TOKEN` in `.env.local` and Vercel; use a fine-grained read-only token and never expose it as `NEXT_PUBLIC_*`.
+
+The homepage selection lives in `src/data/showcase.ts`. Add or remove an approved project slug there; presentation components do not need to change.
+
+The MVP does not include an admin CMS. This avoids authentication and database complexity while there are only a few carefully written case studies. The repository-style data functions preserve a later migration path to a CMS without rewriting presentation components.
 
 Replace or extend the records in `src/data/portfolio.ts`. Do not publish unverified employers, credentials, metrics, ownership claims, or contact details. Collaborative projects must keep an explicit ownership value and personal role description.
 

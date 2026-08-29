@@ -6,6 +6,7 @@ import type {
   Project,
   SkillGroup,
 } from "@/types/portfolio";
+import { showcaseProjectSlugs } from "@/data/showcase";
 
 export const profile = {
   publicName: "Zesky",
@@ -14,6 +15,10 @@ export const profile = {
   introduction:
     "I turn ambitious ideas into clear, resilient software—connecting product thinking, interface craft, and engineering decisions.",
   availability: "Open to meaningful engineering conversations",
+  links: [
+    { label: "GitHub", href: "https://github.com/KurenoChan" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/zheng-hong-koh-3797052b3/" },
+  ],
 };
 
 export const navigation: NavItem[] = [
@@ -37,7 +42,7 @@ export const projects: Project[] = [
     role: "Product designer and software engineer",
     ownership: "personal",
     status: "active",
-    featured: true,
+    featured: false,
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
     links: {},
     caseStudy: {
@@ -80,23 +85,45 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "learning-portal",
-    title: "Learning Portal",
-    eyebrow: "Product engineering · In progress",
+    slug: "dmit-frontend-web",
+    title: "DMIT Fingerprint System",
+    eyebrow: "Lunix Luminous Sdn. Bhd. · Industrial project",
     summary:
-      "An evolving learning environment focused on guided technical work, feedback, and maintainable educational experiences.",
+      "An industrial fingerprint capture and analysis interface for Lunix Luminous Sdn. Bhd., spanning guided capture, hardware integration, and backend-driven ML analysis.",
     description:
-      "A product-engineering exploration into making structured learning feel immediate and practical.",
-    role: "Software engineering contributor",
+      "A React scanning application supporting touch-based hardware and touchless camera workflows within a distributed system.",
+    role: "Frontend engineering contributor for Lunix Luminous Sdn. Bhd.",
     ownership: "professional",
     status: "active",
     featured: true,
-    technologies: ["React", "TypeScript", "Product systems"],
-    links: {},
+    technologies: ["React", "Vite", "Zustand", "REST APIs", "Hardware bridge"],
+    githubRepository: { owner: "KurenoChan", name: "fingerprint-scanning-web-app" },
+    links: { deployment: "https://dmit-frontend-web.vercel.app/", organization: "https://luminous.com.my/" },
+    media: [{ src: "/images/dmit-moa-ceremony.jpg", alt: "Group photograph at the TAR UMT and Lunix Luminous collaboration ceremony", caption: "The university-industry collaboration behind the DMIT system, bringing TAR UMT and Lunix Luminous together." }],
     caseStudy: {
-      context: "Detailed project information is being prepared for publication.",
-      objective: "Present the verified engineering story once its scope and outcomes are approved.",
-      architecture: [], implementation: [], challenges: [], decisions: [], tradeoffs: [], results: [], lessons: [],
+      journey: [
+        { period: "11 Jul 2025 – 24 Apr 2026", title: "Final-year project foundation", description: "Started as Zesky's Bachelor of Software Engineering final-year project at TAR UMT: a hybrid fingerprint submission system with a React interface, ZKTeco ZK9500 scanner bridge, backend services, PostgreSQL, and external ML analysis." },
+        { period: "1 May – 31 Jul 2026", title: "Contract system development", description: "Returned as an External System Development Expert under the TAR UMT and Lunix Luminous collaboration, extending scanner integrations, connecting enterprise workflows, consolidating touchless and touch-based processing, and supporting testing and deployment." },
+      ],
+      context: "Lunix Luminous Sdn. Bhd. needed a guided web interface for Dermatoglyphics Multiple Intelligence Test fingerprint capture. The frontend operates inside a distributed system with a Node.js API, PostgreSQL data layer, Java scanner bridge, and external ML analysis service.",
+      objective: "Guide operators through reliable touch-based scanner and touchless camera capture, validate image quality through backend analysis, and submit complete fingerprint sessions.",
+      architecture: [
+        "React and Vite provide the browser interface and multi-step capture workflow.",
+        "A Node.js and Express API owns sessions, fingerprint records, and external ML orchestration.",
+        "A local Micronaut Java bridge connects the web workflow to ZKTeco scanner hardware, while PostgreSQL stores structured session data.",
+      ],
+      implementation: [
+        "Reusable capture components and hooks separate camera, scanner, upload, analysis, and session concerns.",
+        "Zustand stores coordinate touch-based and touchless capture state across guided workflows.",
+        "The interface supports per-finger, multi-angle capture, quality feedback, review, and structured submission.",
+        "During the contract phase, integrated the OS300 roller scanner and reorganized scanner-specific implementations behind a shared workflow contract.",
+        "Refined device status, initialization, close, capture, API response, result presentation, image storage, and enterprise integration flows.",
+      ],
+      challenges: ["Coordinating browser state with local scanner hardware and remote services.", "Keeping a long capture session understandable while validating completeness and image quality.", "The scanner bridge could close after a failed or completed attempt, requiring a controlled reopen-and-retry path while capturing every angle."],
+      decisions: ["Separate each scanner's device-specific implementation behind a common capture workflow contract.", "Keep ML inference outside the browser and communicate with it through the backend boundary.", "Standardize scanner bridge responses so the frontend can handle device state and errors consistently."],
+      tradeoffs: ["A local scanner bridge adds an installation dependency, but enables communication with specialized hardware that browsers cannot access directly.", "Reopening the bridge during recovery favored completing the operational workflow while the underlying device lifecycle issue remained under investigation."],
+      results: ["A deployed frontend supporting guided touch-based and touchless fingerprint capture workflows.", "Extended the original ZK9500 integration with OS300 roller-scanner work and a version-flexible executable structure."],
+      lessons: ["Hardware-adjacent web products need explicit recovery states and clear progress feedback across every system boundary."],
     },
   },
   {
@@ -110,7 +137,7 @@ export const projects: Project[] = [
     role: "Contributor; individual responsibilities to be documented per project",
     ownership: "collaborative",
     status: "experimental",
-    featured: true,
+    featured: false,
     technologies: ["Games", "AI", "Community"],
     links: {},
     caseStudy: {
@@ -123,16 +150,18 @@ export const projects: Project[] = [
 
 export const experience: Experience[] = [
   {
-    period: "Now",
-    title: "Building product depth",
-    summary: "Developing practical ownership across interface architecture, typed systems, debugging, and product delivery.",
-    highlights: ["Ship coherent features", "Trace decisions through the stack", "Review, learn, and refine"],
+    period: "Jun 2026 – Present",
+    title: "Software Engineer and Teaching Assistant Intern",
+    organization: "Sigma School · On-site · Puchong, Selangor",
+    summary: "Contributing to software delivery and supporting learners across practical engineering work.",
+    highlights: ["React and TypeScript", "CMS", "System testing and QA", "Event planning"],
   },
   {
-    period: "Ongoing",
-    title: "Independent engineering practice",
-    summary: "Using real products and experiments to turn concepts into maintainable software.",
-    highlights: ["React and Next.js applications", "Reusable content architecture", "Accessible interaction design"],
+    period: "May – Jul 2026",
+    title: "External System Development Expert",
+    organization: "TAR UMT · Contract · Remote",
+    summary: "Appointed under the TAR UMT and Lunix Luminous collaboration to extend and integrate the industrial fingerprint system beyond its FYP foundation.",
+    highlights: ["ZK9500 and OS300 scanner SDK integration", "Unified touchless and touch-based workflows", "Database and enterprise-system integration", "Deployment testing and validation"],
   },
 ];
 
@@ -152,7 +181,7 @@ export const experiments: Experiment[] = [
 export const credentials: Credential[] = [];
 
 export function getProjects() { return projects; }
-export function getFeaturedProjects() { return projects.filter((project) => project.featured); }
+export function getFeaturedProjects() { return showcaseProjectSlugs.map((slug) => projects.find((project) => project.slug === slug)).filter((project): project is Project => Boolean(project)); }
 export function getProjectBySlug(slug: string) { return projects.find((project) => project.slug === slug); }
 export function getProjectNeighbors(slug: string) {
   const index = projects.findIndex((project) => project.slug === slug);

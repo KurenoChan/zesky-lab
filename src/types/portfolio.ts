@@ -12,8 +12,11 @@ export type Project = {
   status: ProjectStatus;
   featured: boolean;
   technologies: string[];
-  links: { repository?: string; deployment?: string };
+  githubRepository?: { owner: string; name: string };
+  media?: { src: string; alt: string; caption: string }[];
+  links: { repository?: string; deployment?: string; organization?: string };
   caseStudy: {
+    journey?: { period: string; title: string; description: string }[];
     context: string;
     objective: string;
     architecture: string[];
