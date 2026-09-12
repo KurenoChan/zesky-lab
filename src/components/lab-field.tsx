@@ -1,37 +1,16 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useRef } from "react";
 import type { NavItem } from "@/types/portfolio";
 
+const descriptions: Record<string, string> = {
+  Work: "The systems. The decisions. The story.", About: "The person behind the interface.",
+  Experience: "From learning to taking ownership.", Skills: "A toolkit, grounded in practice.",
+  Experiments: "A little room for the unfinished.", Contact: "Every good build starts somewhere.",
+};
+
 export function LabField({ items }: { items: NavItem[] }) {
-  const fieldRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let cleanup = () => {};
-    void import("gsap").then(({ gsap }) => {
-      const context = gsap.context(() => {
-        gsap.from(fieldRef.current, { y: 16, scale: 0.99, duration: 0.8, ease: "power3.out" });
-      }, fieldRef);
-      cleanup = () => context.revert();
-    });
-    return () => cleanup();
-  }, []);
-
-  return (
-    <div className="lab-field" ref={fieldRef} aria-label="Explore the lab">
-      <div className="field-orbit orbit-one" aria-hidden="true" />
-      <div className="field-orbit orbit-two" aria-hidden="true" />
-      <div className="field-core" data-node>
-        <span className="pulse" aria-hidden="true" />
-        <strong>ZL</strong><small>Core online</small>
-      </div>
-      {items.map((item, index) => (
-        <Link className={`field-node node-${index + 1}`} data-node href={item.href} key={item.href}>
-          <span>{item.index}</span><strong>{item.label}</strong><small>Open module ↗</small>
-        </Link>
-      ))}
-    </div>
-  );
+  return <nav className="lab-field" aria-label="Explore the lab">
+    {items.map((item) => <Link className="field-node" href={item.href} key={item.href}>
+      <span>{item.index} /</span><strong>{item.label}</strong><p>{descriptions[item.label]}</p><i aria-hidden="true">↗</i>
+    </Link>)}
+  </nav>;
 }

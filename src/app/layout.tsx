@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { LabIntro } from "@/components/motion/lab-intro";
+import { ProjectTransition } from "@/components/motion/project-transition";
+import { CustomCursor } from "@/components/motion/custom-cursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body><a className="skip-link" href="#main">Skip to content</a><LabIntro /><SmoothScroll /><SiteHeader />{children}</body>
+      <body><a className="skip-link" href="#main">Skip to content</a><SmoothScroll /><CustomCursor /><ProjectTransition><LabIntro /><SiteHeader />{children}</ProjectTransition></body>
     </html>
   );
 }

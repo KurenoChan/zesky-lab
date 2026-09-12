@@ -19,9 +19,17 @@ describe("portfolio repository", () => {
     expect(kisora?.role).toMatch(/contributor/i);
   });
 
-  it("provides deterministic project neighbors", () => {
-    const neighbors = getProjectNeighbors("zesky-lab");
-    expect(neighbors.previous?.slug).toBe("kisora-studio");
-    expect(neighbors.next?.slug).toBe("dmit-frontend-web");
+  it("does not recommend the portfolio itself or unselected studio work", () => {
+    expect(getProjectNeighbors("dmit-frontend-web")).toEqual({ previous: undefined, next: undefined });
+    expect(getProjectNeighbors("not-a-project")).toEqual({ previous: undefined, next: undefined });
+  });
+
+  it("preserves DMIT's two phases and unresolved validation caveats", () => {
+    const dmit = getProjectBySlug("dmit-frontend-web");
+    expect(dmit?.ownership).toBe("professional");
+    expect(dmit?.caseStudy.journey).toHaveLength(2);
+    expect(dmit?.caseStudy.journey?.[0].period).toContain("2025");
+    expect(dmit?.caseStudy.tradeoffs.join(" ")).toMatch(/ZK9500.*re-testing/);
+    expect(dmit?.caseStudy.tradeoffs.join(" ")).toContain("remained under investigation");
   });
 });

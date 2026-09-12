@@ -2,6 +2,7 @@ import type { Metadata } from "next";import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getProjectNeighbors, getProjects } from "@/data/portfolio";
+import { CaptureIllustration } from "@/components/projects/capture-illustration";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -27,7 +28,7 @@ export default async function ProjectPage({ params }: PageProps) {
   return (
     <main id="main" className="case-page">
       <header className="case-hero shell"><Link className="back-link" href="/#work">← Selected work</Link><p className="eyebrow">Case study · {project.status}</p><h1>{project.title}</h1><p className="case-summary">{project.summary}</p><div className="case-facts"><div><span>Role</span><strong>{project.role}</strong></div><div><span>Ownership</span><strong>{project.ownership}</strong></div><div><span>Stack</span><strong>{project.technologies.join(" · ")}</strong></div></div></header>
-      <div className="case-visual shell" aria-hidden="true"><div className="case-console"><span>PROJECT / {project.slug.toUpperCase()}</span><strong>{project.title.slice(0, 2).toUpperCase()}</strong><span>STATUS / {project.status.toUpperCase()}</span></div></div>
+      <div className="case-visual shell" aria-hidden="true">{project.slug === "dmit-frontend-web" ? <CaptureIllustration /> : <div className="case-console"><span>PROJECT / {project.slug.toUpperCase()}</span><strong>{project.title.slice(0, 2).toUpperCase()}</strong><span>STATUS / {project.status.toUpperCase()}</span></div>}</div>
       {(project.links.deployment || project.links.repository || project.links.organization) && <div className="case-links shell">{project.links.deployment && <a href={project.links.deployment} target="_blank" rel="noreferrer">Launch live project <span aria-hidden="true">↗</span></a>}{project.links.organization && <a href={project.links.organization} target="_blank" rel="noreferrer">Visit Lunix Luminous <span aria-hidden="true">↗</span></a>}{project.links.repository && <a href={project.links.repository} target="_blank" rel="noreferrer">View repository <span aria-hidden="true">↗</span></a>}</div>}
       <article className="case-content shell">
         {project.caseStudy.journey && <section className="case-block case-journey"><h2>How I became involved</h2><div className="case-list">{project.caseStudy.journey.map((phase, index) => <article key={phase.title}><span>{String(index + 1).padStart(2, "0")}</span><div><small>{phase.period}</small><h3>{phase.title}</h3><p>{phase.description}</p></div></article>)}</div></section>}

@@ -92,7 +92,8 @@ export const projects: Project[] = [
       "An industrial fingerprint capture and analysis interface for Lunix Luminous Sdn. Bhd., spanning guided capture, hardware integration, and backend-driven ML analysis.",
     description:
       "A React scanning application supporting touch-based hardware and touchless camera workflows within a distributed system.",
-    role: "Frontend engineering contributor for Lunix Luminous Sdn. Bhd.",
+    role: "FYP developer, then contracted External System Development Expert through TAR UMT’s collaboration with Lunix Luminous Sdn. Bhd.; frontend workflows and scanner integration.",
+    roleSummary: "Frontend workflows & scanner integration · FYP developer → contracted System Development Expert",
     ownership: "professional",
     status: "active",
     featured: true,
@@ -105,7 +106,7 @@ export const projects: Project[] = [
         { period: "11 Jul 2025 – 24 Apr 2026", title: "Final-year project foundation", description: "Started as Zesky's Bachelor of Software Engineering final-year project at TAR UMT: a hybrid fingerprint submission system with a React interface, ZKTeco ZK9500 scanner bridge, backend services, PostgreSQL, and external ML analysis." },
         { period: "1 May – 31 Jul 2026", title: "Contract system development", description: "Returned as an External System Development Expert under the TAR UMT and Lunix Luminous collaboration, extending scanner integrations, connecting enterprise workflows, consolidating touchless and touch-based processing, and supporting testing and deployment." },
       ],
-      context: "Lunix Luminous Sdn. Bhd. needed a guided web interface for Dermatoglyphics Multiple Intelligence Test fingerprint capture. The frontend operates inside a distributed system with a Node.js API, PostgreSQL data layer, Java scanner bridge, and external ML analysis service.",
+      context: "Lunix Luminous Sdn. Bhd. needed a guided web interface for Dermatoglyphic Multiple Intelligence Test (DMIT) fingerprint capture. The frontend operates inside a distributed system with a Node.js API, PostgreSQL data layer, Java scanner bridge, and external ML analysis service. This case study describes software and device integration; it does not establish the scientific validity of intelligence assessment from fingerprints.",
       objective: "Guide operators through reliable touch-based scanner and touchless camera capture, validate image quality through backend analysis, and submit complete fingerprint sessions.",
       architecture: [
         "React and Vite provide the browser interface and multi-step capture workflow.",
@@ -118,10 +119,11 @@ export const projects: Project[] = [
         "The interface supports per-finger, multi-angle capture, quality feedback, review, and structured submission.",
         "During the contract phase, integrated the OS300 roller scanner and reorganized scanner-specific implementations behind a shared workflow contract.",
         "Refined device status, initialization, close, capture, API response, result presentation, image storage, and enterprise integration flows.",
+        "In May 2026, refined OS300 /stat, /init, and /close responses, added device information to /stat, packaged the bridge as an executable, and documented a version-flexible bridge directory structure.",
       ],
       challenges: ["Coordinating browser state with local scanner hardware and remote services.", "Keeping a long capture session understandable while validating completeness and image quality.", "The scanner bridge could close after a failed or completed attempt, requiring a controlled reopen-and-retry path while capturing every angle."],
       decisions: ["Separate each scanner's device-specific implementation behind a common capture workflow contract.", "Keep ML inference outside the browser and communicate with it through the backend boundary.", "Standardize scanner bridge responses so the frontend can handle device state and errors consistently."],
-      tradeoffs: ["A local scanner bridge adds an installation dependency, but enables communication with specialized hardware that browsers cannot access directly.", "Reopening the bridge during recovery favored completing the operational workflow while the underlying device lifecycle issue remained under investigation."],
+      tradeoffs: ["A local scanner bridge adds an installation dependency, but enables communication with specialized hardware that browsers cannot access directly.", "Reopening the bridge during recovery favored completing the operational workflow while the underlying device lifecycle issue remained under investigation.", "After the 21 June 2026 scanner-adapter refactor, the ZK9500 workflow still required re-testing. The shared interface is an architectural decision, not a claim that both scanner paths were fully validated."],
       results: ["A deployed frontend supporting guided touch-based and touchless fingerprint capture workflows.", "Extended the original ZK9500 integration with OS300 roller-scanner work and a version-flexible executable structure."],
       lessons: ["Hardware-adjacent web products need explicit recovery states and clear progress feedback across every system boundary."],
     },
@@ -184,10 +186,11 @@ export function getProjects() { return projects; }
 export function getFeaturedProjects() { return showcaseProjectSlugs.map((slug) => projects.find((project) => project.slug === slug)).filter((project): project is Project => Boolean(project)); }
 export function getProjectBySlug(slug: string) { return projects.find((project) => project.slug === slug); }
 export function getProjectNeighbors(slug: string) {
-  const index = projects.findIndex((project) => project.slug === slug);
-  if (index < 0) return { previous: undefined, next: undefined };
+  const selected = getFeaturedProjects();
+  const index = selected.findIndex((project) => project.slug === slug);
+  if (index < 0 || selected.length < 2) return { previous: undefined, next: undefined };
   return {
-    previous: projects[(index - 1 + projects.length) % projects.length],
-    next: projects[(index + 1) % projects.length],
+    previous: selected[index - 1],
+    next: selected[index + 1],
   };
 }

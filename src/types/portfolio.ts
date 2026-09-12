@@ -8,6 +8,7 @@ export type Project = {
   summary: string;
   description: string;
   role: string;
+  roleSummary?: string;
   ownership: Ownership;
   status: ProjectStatus;
   featured: boolean;
