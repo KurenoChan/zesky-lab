@@ -30,7 +30,7 @@ Playwright requires a Chromium browser (`npx playwright install chromium`) befor
 - `src/data/portfolio.ts` is the current content source. It deliberately contains no JSX, CSS classes, or animation settings.
 - `src/types/portfolio.ts` defines the content contract that future sources and LabGround can consume.
 - `src/components/layout`, `navigation`, `motion`, and `ui` separate stable responsibilities without creating speculative folders.
-- Client Components are restricted to the responsive menu, first-visit intro, project transition, pointer-reactive project card, and scroll enhancement. The lab index and DMIT story chapters are Server Components. Content, metadata, and routes stay server-rendered.
+- Client Components own interactive menus, dialogs, motion, cursor feedback, the screenshot gallery, opt-in project frame, and non-submitting contact form. The lab index, About, future destinations, and DMIT story chapters are Server Components. Content, metadata, and routes stay server-rendered.
 
 Data flows from typed content records through repository selectors into Server Components. Interactive children receive only the serializable data they need.
 
@@ -42,9 +42,9 @@ Lenis runs only for fine-pointer users who have not requested reduced motion. To
 
 The first-visit intro is a short brand greeting, not a simulated network loader. It is skippable, remembered per tab session, and bypassed for deep links, disabled storage, and reduced motion.
 
-`StatementMarquee` provides the slow, seamless typography loop. Its two equal copies share one CSS transform animation, independent of scroll position; an IntersectionObserver pauses it offscreen. The visitor can pause/resume it, and reduced motion renders static text. `CustomCursor` is a mouse-only enhancement with contextual project labels. Its DOM updates use GSAP quick setters/tweens rather than React state on every pointer event. Native cursors are restored on keyboard use, pointer exit, window blur, text inputs, dialogs, reduced motion, forced colors, and cleanup.
+`StatementMarquee` provides a seamless 42-second typography loop. Its two equal copies share one CSS transform animation, independent of scroll position; an IntersectionObserver pauses it offscreen. It continues on hover without controls, as requested; reduced motion renders static text. `CustomCursor` is a mouse-only reticle with contextual project labels. Its DOM updates use GSAP quick setters/tweens rather than React state on every pointer event. Native cursors are restored on keyboard use, pointer exit, window blur, text inputs, dialogs, reduced motion, forced colors, and cleanup.
 
-Desktop homepage sections use spacious 1180px-max content bounds and viewport-aware typography. At widths of at least 1024px and heights of at least 700px, they compose their content above the bottom dock within a screen where practical. This is a minimum-height layout, not a fixed-height crop: mobile, zoom, and future longer content can grow normally. The full DMIT case study is intentionally a long-form document.
+Desktop content occupies 70% of the viewport, leaving 15% gutters on each side. Tablet and mobile use smaller responsive gutters. Sections compose above the bottom dock within a screen where practical; longer content grows instead of clipping. The full DMIT case study is intentionally long-form. Manrope body text and Space Grotesk display text are bundled locally through Next's font optimization.
 
 See `docs/design-direction.md` for the current storytelling and visual rationale.
 
@@ -62,11 +62,21 @@ Set `NEXT_PUBLIC_SITE_URL` to the production origin before deployment so canonic
 
 ## Reviewing changes
 
+### Portrait, gallery, and live previews
+
+- Add your photo as `public/images/portrait.webp`, then set `src` to `/images/portrait.webp` in `src/data/portrait.ts`. The rounded frame applies grayscale automatically; update the alt text for your chosen photo.
+- Project `screenshots` records contain dimensions, captions, alt text, and source provenance. The DMIT gallery uses reviewed report figures from PDF pages 78, 79, 80, and 85, with browser chrome cropped. These are historical prototype screens, not claims about the current deployment. No actual fingerprint captures or environment credentials were exported.
+- `ProjectGallery` supports thumbnails, arrow keys, and an enlarged native dialog. `ProjectPreview` loads the HTTPS deployment only after launch. It does not bypass remote embedding restrictions; an external link remains available. Authentication, backend, and scanner workflows may not work within the sandboxed frame.
+- The contact form is a visual preview only: it neither submits nor saves data. Approved professional links remain usable.
+- `src/data/ecosystem.ts` keeps LabGround and Kisora's future scope distinct. Locked actions do not imply either destination is available.
+
+Run `node scripts/review-refinements.mjs` for the latest desktop/mobile component captures.
+
 Run `node scripts/review-portfolio.mjs` with a local server running. It captures desktop, laptop, mobile, and small-mobile views under the ignored `playwright-report/visual/` directory and reports viewport overflow and hero/dock measurements. Set `REVIEW_URL` to inspect a different local or preview origin.
 
 `node scripts/review-chapters.mjs` measures and captures each desktop homepage chapter at 1920×900, 1440×900, and 1366×768. Its ignored screenshots live in `playwright-report/chapters/`.
 
-Browser tests cover first-visit and deep-link entry, no-JavaScript HTML, project transitions, return navigation, mobile focus and dismissal, desktop horizontal movement, autonomous marquee pause/resume, custom-cursor fallbacks, reduced motion, resize cleanup, viewport-sized chapter bounds, and serious/critical axe findings on the homepage and DMIT case study. The five device-specific cases are intentionally skipped on the opposite device.
+Browser tests cover first-visit and deep-link entry, no-JavaScript HTML, project transitions, return navigation, mobile focus and dismissal, desktop horizontal movement, continuous marquee behavior, custom-cursor fallbacks, reduced motion, resize cleanup, responsive gutters, circle alignment, locked destinations, the non-submitting form, gallery navigation, opt-in previews, and serious/critical axe findings on the homepage and DMIT case study. Five device-specific cases are intentionally skipped on the opposite device.
 
 To test production compilation, run `npm run build`, then `npm run start -- --port 3001`. Set `PLAYWRIGHT_BASE_URL=http://127.0.0.1:3001` when running `npm run test:e2e` against that server. `PLAYWRIGHT_SERVER_COMMAND` can override the server command if Playwright should start it itself. These environment examples use shell-appropriate syntax; in PowerShell, assign `$env:PLAYWRIGHT_BASE_URL`.
 

@@ -1,6 +1,11 @@
 import { LabField } from "@/components/lab-field";
 import Image from "next/image";
 import Link from "next/link";
+import { FiArrowUp, FiArrowUpRight } from "react-icons/fi";
+import { BrandLogo } from "@/components/ui/brand-logo";
+import { AboutExperience } from "@/components/sections/about-experience";
+import { FutureDestinations } from "@/components/sections/future-destinations";
+import { ContactForm } from "@/components/sections/contact-form";
 import { ScrollExperience } from "@/components/motion/scroll-experience";
 import { StatementMarquee } from "@/components/motion/statement-marquee";
 import { ProjectStory } from "@/components/projects/project-story";
@@ -20,14 +25,12 @@ export default async function Home() {
         <div className="hero-backdrop" aria-hidden="true"><Image src="/images/anime-lab-city-hero.png" alt="" fill priority sizes="(max-width: 800px) 150vh, 100vw" /></div>
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-inner shell">
-          <div className="hero-status"><Link href="/" className="hero-wordmark">ZESKY<span> / LAB</span></Link><span>Kuala Lumpur, MY<br />Software engineer / Creative thinker</span></div>
+          <div className="hero-status"><Link href="/" className="hero-wordmark"><BrandLogo /><span className="hero-brand-name">ZESKY <small>/ LAB</small></span></Link><span>Kuala Lumpur, MY<br />Software engineer / Creative thinker</span></div>
           <div className="hero-copy">
-            <p className="eyebrow"><span className="status-dot" /> A personal space for purposeful software</p>
             <h1 id="hero-title"><span className="hero-line">Ideas become</span><span className="hero-line hero-accent">living systems.</span></h1>
-            <p className="hero-lede">I’m Zesky. I turn complex workflows into software that makes sense—from an interface on screen to the hardware behind it.</p>
+            <p className="hero-lede">I’m Zesky, a software engineer connecting thoughtful interfaces with the systems and hardware behind them.</p>
             <div className="hero-actions"><ActionLink href="#work">Explore selected work</ActionLink><ActionLink href="#lab-index" variant="secondary">Choose a route</ActionLink></div>
           </div>
-          <div className="hero-scene-note"><span>Currently writing the next chapter</span><p>Engineering & teaching assistance<br /><strong>Sigma School · Internship</strong></p></div>
         </div>
       </section>
 
@@ -52,7 +55,7 @@ export default async function Home() {
 
       <section className="about-section shell" id="about">
         <SectionHeading index="02" eyebrow="About Zesky" title="Curious by default. Intentional in practice." />
-        <div className="about-grid"><p className="about-lead">I&apos;m Zesky—a software engineer interested in the space where <em>clear systems</em> meet <em>memorable experiences.</em></p><div><p>This lab documents more than finished screens. It follows the reasoning, experiments, constraints, and changes that shape the work.</p><p>The aim is growing ownership: understand the architecture, trace the data, question trade-offs, and keep refining what ships.</p><div className="principle"><span>Working principle</span><strong>Concept → Build → Review → Learn → Refine</strong></div></div></div>
+        <AboutExperience />
       </section>
 
       <section className="experience-section shell" id="experience">
@@ -70,10 +73,10 @@ export default async function Home() {
         <div className="experiment-list">{experiments.map((experiment) => <article key={experiment.title}><span>{experiment.status}</span><h3>{experiment.title}</h3><p>{experiment.summary}</p></article>)}</div>
       </section>
 
-      <section className="kisora-section shell" aria-labelledby="kisora-title"><div className="kisora-glow" aria-hidden="true" /><p className="eyebrow">A connected world of its own</p><h2 id="kisora-title">Kisora Studio</h2><p>A separate collaborative direction for games, AI initiatives, and community-built products. It belongs to a team story, so shared work will always distinguish individual contribution from collective ownership.</p><span className="coming-soon">Separate studio experience · Coming later</span></section>
+      <FutureDestinations />
 
-      <section className="contact-section shell" id="contact"><div><p className="eyebrow">06 · Say hello</p><h2>Have an idea<br />worth building?</h2></div><div className="contact-copy"><p>{profile.availability}. Bring the difficult part, the unclear brief, or the system that needs a calmer way through.</p><div className="contact-links">{profile.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label}<span aria-hidden="true">↗</span></a>)}</div></div></section>
-      <footer className="site-footer shell"><span>ZESKY LAB © {new Date().getFullYear()}</span><span>Built with intent. Evolving in public.</span><a href="#main">Back to top ↑</a></footer>
+      <section className="contact-section shell" id="contact"><div className="contact-intro"><div><p className="eyebrow">06 · Say hello</p><h2>Have an idea<br />worth building?</h2></div><div className="contact-copy"><p>{profile.availability}. Bring the difficult part, the unclear brief, or the system that needs a calmer way through.</p><div className="contact-links">{profile.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label}<FiArrowUpRight aria-hidden="true" /></a>)}</div></div></div><ContactForm /></section>
+      <footer className="site-footer shell"><span>ZESKY LAB © {new Date().getFullYear()}</span><span>Built with intent. Evolving in public.</span><a href="#main">Back to top <FiArrowUp aria-hidden="true" /></a></footer>
     </main>
   );
 }

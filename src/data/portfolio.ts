@@ -93,13 +93,19 @@ export const projects: Project[] = [
     description:
       "A React scanning application supporting touch-based hardware and touchless camera workflows within a distributed system.",
     role: "FYP developer, then contracted External System Development Expert through TAR UMT’s collaboration with Lunix Luminous Sdn. Bhd.; frontend workflows and scanner integration.",
-    roleSummary: "Frontend workflows & scanner integration · FYP developer → contracted System Development Expert",
+    roleSummary: "Frontend workflows & scanner integration · FYP developer, then contracted System Development Expert",
     ownership: "professional",
     status: "active",
     featured: true,
     technologies: ["React", "Vite", "Zustand", "REST APIs", "Hardware bridge"],
     githubRepository: { owner: "KurenoChan", name: "fingerprint-scanning-web-app" },
     links: { deployment: "https://dmit-frontend-web.vercel.app/", organization: "https://luminous.com.my/" },
+    screenshots: [
+      { src: "/images/dmit/session-dashboard.webp", alt: "FYP interface showing an active session countdown and a start capture action", caption: "Session dashboard", width: 1919, height: 911, source: "FYP report · PDF page 78" },
+      { src: "/images/dmit/image-browser.webp", alt: "Empty touch-based image browser with finger-position guides and capture placeholders", caption: "Guided image browser", width: 1919, height: 912, source: "FYP report · PDF page 79" },
+      { src: "/images/dmit/bridge-install.webp", alt: "Scanner bridge installation dialog explaining the Windows bridge setup", caption: "Hardware bridge onboarding", width: 1919, height: 909, source: "FYP report · PDF page 80" },
+      { src: "/images/dmit/session-complete.webp", alt: "Prototype submission confirmation screen with a return action", caption: "Submission confirmation", width: 1918, height: 909, source: "FYP report · PDF page 85" },
+    ],
     media: [{ src: "/images/dmit-moa-ceremony.jpg", alt: "Group photograph at the TAR UMT and Lunix Luminous collaboration ceremony", caption: "The university-industry collaboration behind the DMIT system, bringing TAR UMT and Lunix Luminous together." }],
     caseStudy: {
       journey: [

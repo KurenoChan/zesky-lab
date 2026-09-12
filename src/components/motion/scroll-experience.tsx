@@ -17,10 +17,11 @@ export function ScrollExperience() {
         gsap.from(".hero-line", { yPercent: 22, opacity: 0, stagger: 0.12, duration: 1.1, ease: "power3.out" });
         gsap.utils.toArray<HTMLElement>(".section-heading").forEach((heading) => {
           gsap.from(heading.children, {
-            y: 35, opacity: 0, stagger: 0.12, duration: 0.8, ease: "power3.out",
+            y: 18, opacity: 0, stagger: 0.05, duration: 0.55, ease: "power3.out",
             scrollTrigger: { trigger: heading, start: "top 92%", once: true },
           });
         });
+        gsap.from(".portrait-frame", { clipPath: "inset(0 0 14% 0 round 1.4rem)", y: 20, duration: 0.7, ease: "power3.out", scrollTrigger: { trigger: ".portrait-frame", start: "top 88%", once: true } });
       }, "#main");
       return () => context.revert();
     });

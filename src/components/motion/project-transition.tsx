@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { FiCircle, FiX, FiArrowUpRight } from "react-icons/fi";
 import { AnimatedDialog } from "@/components/ui/animated-dialog";
 
 type Destination = { href: string; title: string };
@@ -45,10 +46,10 @@ export function ProjectTransition({ children }: { children: ReactNode }) {
   return <TransitionContext.Provider value={openProject}>{children}
     <AnimatedDialog open={open} onDismiss={close} label="Opening project case study" className="project-transition">
       <div className="transition-terminal">
-        <div className="terminal-chrome"><span>● ● ●</span><span>ZESKY LAB / CASE FILE</span><button onClick={close} aria-label="Dismiss project transition">✕</button></div>
+        <div className="terminal-chrome"><span className="terminal-lights" aria-hidden="true"><FiCircle /><FiCircle /><FiCircle /></span><span>ZESKY LAB / CASE FILE</span><button onClick={close} aria-label="Dismiss project transition"><FiX aria-hidden="true" /></button></div>
         <p className="eyebrow" data-dialog-item>From interface to engineering</p><h2 data-dialog-item>{destination?.title}</h2>
         <p className="terminal-command" data-dialog-item>&gt; open {destination?.href}<span aria-hidden="true">_</span></p>
-        {destination && <a className="text-link" href={destination.href} data-dialog-item>Continue directly ↗</a>}
+        {destination && <a className="text-link" href={destination.href} data-dialog-item>Continue directly <FiArrowUpRight aria-hidden="true" /></a>}
       </div>
     </AnimatedDialog>
   </TransitionContext.Provider>;

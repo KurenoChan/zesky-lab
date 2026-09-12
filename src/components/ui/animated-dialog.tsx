@@ -17,13 +17,13 @@ export function AnimatedDialog({ open, onDismiss, label, className, children, id
       if (!dialog.open) dialog.showModal();
       document.body.style.overflow = "hidden";
       const context = gsap.context(() => {
-        gsap.fromTo(dialog, { opacity: 0, y: reduced ? 0 : 28, scale: reduced ? 1 : 0.97 }, { opacity: 1, y: 0, scale: 1, duration: reduced ? 0 : 0.5, ease: "power3.out" });
-        if (!reduced) gsap.fromTo(dialog.querySelectorAll("[data-dialog-item]"), { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.045, duration: 0.45, delay: 0.1, ease: "power3.out" });
+        gsap.fromTo(dialog, { opacity: 0, y: reduced ? 0 : 20, scale: reduced ? 1 : 0.97 }, { opacity: 1, y: 0, scale: 1, duration: reduced ? 0 : 0.25, ease: "power3.out" });
+        if (!reduced) gsap.fromTo(dialog.querySelectorAll("[data-dialog-item]"), { y: 12, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.03, duration: 0.2, ease: "power3.out" });
       }, dialog);
       return () => { context.revert(); document.body.style.overflow = previousOverflow; };
     }
     if (dialog.open) {
-      const tween = gsap.to(dialog, { opacity: 0, y: reduced ? 0 : 18, duration: reduced ? 0 : 0.3, ease: "power2.in", onComplete: () => dialog.close() });
+      const tween = gsap.to(dialog, { opacity: 0, y: reduced ? 0 : 14, duration: reduced ? 0 : 0.18, ease: "power2.out", onComplete: () => dialog.close() });
       return () => { tween.kill(); dialog.close(); };
     }
   }, [open]);

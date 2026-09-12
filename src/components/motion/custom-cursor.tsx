@@ -2,6 +2,7 @@
 
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
+import { FiArrowUpRight } from "react-icons/fi";
 
 /** Progressive mouse-only enhancement. Never replaces touch, text-input or modal cursors. */
 export function CustomCursor() {
@@ -12,6 +13,7 @@ export function CustomCursor() {
     const media = gsap.matchMedia();
     media.add("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) and (forced-colors: none)", () => {
       const root = document.documentElement;
+      cursor.dataset.enabled = "true";
       const x = gsap.quickTo(cursor, "x", { duration: 0.16, ease: "power3.out" });
       const y = gsap.quickTo(cursor, "y", { duration: 0.16, ease: "power3.out" });
       let active = false;
@@ -24,7 +26,7 @@ export function CustomCursor() {
       observer.observe(document.body, { subtree: true, attributes: true, attributeFilter: ["open"] });
       const move = (event: PointerEvent) => {
         const target = event.target instanceof Element ? event.target : null;
-        if (event.pointerType !== "mouse" || modalOpen || target?.closest('input, textarea, select, [contenteditable="true"], [data-native-cursor]')) { hide(); return; }
+        if (event.pointerType !== "mouse" || modalOpen || target?.closest('input, textarea, select, iframe, [contenteditable="true"], [data-native-cursor]')) { hide(); return; }
         if (!active) { gsap.set(cursor, { x: event.clientX, y: event.clientY }); active = true; }
         x(event.clientX); y(event.clientY);
         root.dataset.cursorReady = "true";
@@ -41,7 +43,7 @@ export function CustomCursor() {
       window.addEventListener("blur", hide);
       window.addEventListener("keydown", key);
       return () => {
-        hide(); observer.disconnect(); x.tween.kill(); y.tween.kill();
+        hide(); delete cursor.dataset.enabled; observer.disconnect(); x.tween.kill(); y.tween.kill();
         window.removeEventListener("pointermove", move);
         document.documentElement.removeEventListener("pointerleave", hide);
         window.removeEventListener("blur", hide); window.removeEventListener("keydown", key);
@@ -49,5 +51,5 @@ export function CustomCursor() {
     });
     return () => media.revert();
   }, []);
-  return <div ref={ref} className="custom-cursor" aria-hidden="true"><div className="cursor-ring"><span /></div></div>;
+  return <div ref={ref} className="custom-cursor" aria-hidden="true"><div className="cursor-ring"><span /><FiArrowUpRight className="cursor-arrow" /></div></div>;
 }

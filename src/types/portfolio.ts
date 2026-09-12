@@ -1,5 +1,6 @@
 export type Ownership = "personal" | "collaborative" | "professional";
 export type ProjectStatus = "completed" | "active" | "experimental";
+export type ProjectScreenshot = { src: string; alt: string; caption: string; width: number; height: number; source: string };
 
 export type Project = {
   slug: string;
@@ -15,6 +16,7 @@ export type Project = {
   technologies: string[];
   githubRepository?: { owner: string; name: string };
   media?: { src: string; alt: string; caption: string }[];
+  screenshots?: ProjectScreenshot[];
   links: { repository?: string; deployment?: string; organization?: string };
   caseStudy: {
     journey?: { period: string; title: string; description: string }[];

@@ -1,10 +1,11 @@
 import { expect, test } from "@playwright/test";
 
 test("first-visit welcome is skippable and does not replay on reload", async ({ page }) => {
-  await page.goto("/");
+  // Do not wait for artwork downloads while the short greeting auto-dismisses.
+  await page.goto("/", { waitUntil: "domcontentloaded" });
   const intro = page.getByRole("dialog", { name: "Welcome to Zesky Lab" });
   await expect(intro).toBeVisible();
-  await page.getByRole("button", { name: "Skip intro" }).click();
+  await page.getByRole("button", { name: "Skip intro" }).press("Enter");
   await expect(intro).not.toBeVisible();
   await page.reload();
   await expect(intro).not.toBeVisible();

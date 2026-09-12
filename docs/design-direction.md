@@ -64,7 +64,7 @@ Sigma School remains a Software Engineer and Teaching Assistant internship from 
 
 The selected-work list and project neighbors exclude the portfolio itself and unselected Kisora work. Older project routes remain addressable to avoid breaking existing URLs. Kisora remains a separate collaborative destination, not a third portfolio presentation.
 
-## Video-guided spacing and motion refinement
+## Video-guided spacing and motion refinement (earlier iteration)
 
 The supplied 36-second recording was inspected locally as a sequence of frames. It demonstrates large editorial type, distinct page compositions, clear horizontal margins, and movement connecting the content. No video frames or reference artwork were copied into production.
 
@@ -73,3 +73,15 @@ The homepage now uses an inset 1180px maximum reading width, paired heading/copy
 The Curiosity / Craft / Continuity strip now moves slowly and infinitely without requiring scrolling. Duplicate decorative copies produce a seamless loop; one screen-reader text alternative avoids repetition. An explicit pause/resume control and reduced-motion fallback preserve user control. The desktop DMIT scroll-driven horizontal story remains separate from this autonomous motion.
 
 The owner's later request explicitly introduces a custom cursor, superseding the initial MVP exclusion. It is limited to fine-pointer hover devices without reduced-motion or forced-color preferences. Its default ring is small; project links expand it into an Open cue. It never becomes a requirement for navigation, and native pointers remain available for dialogs and text inputs.
+
+## Current refinement: 12 September 2026
+
+This iteration supersedes the earlier 1180px shell and marquee controls above. Desktop content is 70% wide (15% gutters per side), with smaller gutters on mobile. Content can grow rather than being forced into a clipped viewport. The marquee uses a 42-second seamless loop, continues on hover, has no pause button, pauses offscreen, and becomes static for reduced motion. Removing its pause control is an explicit owner preference; reduced-motion support is not a substitute for a full WCAG conformance review of continuous motion.
+
+Impeccable, Taste, and Emil's design-engineering guidance informed a targeted refinement: clearer composition, locally bundled Manrope and Space Grotesk, restrained glass, shorter interruptible dialog transitions, and reusable components. Existing anime artwork and professional case-study content were preserved. React Icons replace Unicode interface symbols, and the existing Z logo appears in the hero and dock.
+
+About now combines a replaceable grayscale portrait frame with the introduction and a five-stage working principle. Invitation cards have subtle content zoom. Chapter numbers are centered in concentric circles, with captions outside their bounds. Contact has a clearly disclosed non-submitting preview form alongside working professional links.
+
+LabGround precedes Kisora: abstract CSS geometry suggests the future shared-content 3D portfolio without introducing WebGL. Kisora uses a distinct plum/rose atmosphere and remains a separate collaborative world. Both have locked Coming soon actions and an expandable Explore the vision explanation; no destination URL is invented.
+
+Project detail pages now support a keyboard-operable screenshot gallery and opt-in sandboxed deployment preview. DMIT images are reviewed historical figures from report pages 78, 79, 80, and 85; browser chrome was cropped, and actual fingerprint captures were excluded. The preview never proxies around remote security policies and retains an external fallback. No contact endpoint or CMS was added.

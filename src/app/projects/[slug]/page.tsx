@@ -1,5 +1,8 @@
 import type { Metadata } from "next";import Image from "next/image";
 import Link from "next/link";
+import { FiArrowLeft, FiArrowRight, FiArrowUpRight } from "react-icons/fi";
+import { ProjectGallery } from "@/components/projects/project-gallery";
+import { ProjectPreview } from "@/components/projects/project-preview";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getProjectNeighbors, getProjects } from "@/data/portfolio";
 import { CaptureIllustration } from "@/components/projects/capture-illustration";
@@ -27,9 +30,10 @@ export default async function ProjectPage({ params }: PageProps) {
   const isComplete = project.caseStudy.architecture.length > 0;
   return (
     <main id="main" className="case-page">
-      <header className="case-hero shell"><Link className="back-link" href="/#work">← Selected work</Link><p className="eyebrow">Case study · {project.status}</p><h1>{project.title}</h1><p className="case-summary">{project.summary}</p><div className="case-facts"><div><span>Role</span><strong>{project.role}</strong></div><div><span>Ownership</span><strong>{project.ownership}</strong></div><div><span>Stack</span><strong>{project.technologies.join(" · ")}</strong></div></div></header>
-      <div className="case-visual shell" aria-hidden="true">{project.slug === "dmit-frontend-web" ? <CaptureIllustration /> : <div className="case-console"><span>PROJECT / {project.slug.toUpperCase()}</span><strong>{project.title.slice(0, 2).toUpperCase()}</strong><span>STATUS / {project.status.toUpperCase()}</span></div>}</div>
-      {(project.links.deployment || project.links.repository || project.links.organization) && <div className="case-links shell">{project.links.deployment && <a href={project.links.deployment} target="_blank" rel="noreferrer">Launch live project <span aria-hidden="true">↗</span></a>}{project.links.organization && <a href={project.links.organization} target="_blank" rel="noreferrer">Visit Lunix Luminous <span aria-hidden="true">↗</span></a>}{project.links.repository && <a href={project.links.repository} target="_blank" rel="noreferrer">View repository <span aria-hidden="true">↗</span></a>}</div>}
+      <header className="case-hero shell"><Link className="back-link" href="/#work"><FiArrowLeft aria-hidden="true" /> Selected work</Link><p className="eyebrow">Case study · {project.status}</p><h1>{project.title}</h1><p className="case-summary">{project.summary}</p><div className="case-facts"><div><span>Role</span><strong>{project.role}</strong></div><div><span>Ownership</span><strong>{project.ownership}</strong></div><div><span>Stack</span><strong>{project.technologies.join(" · ")}</strong></div></div></header>
+      {project.screenshots?.length ? <ProjectGallery screenshots={project.screenshots} title={project.title} /> : <div className="case-visual shell" aria-hidden="true">{project.slug === "dmit-frontend-web" ? <CaptureIllustration /> : <div className="case-console"><span>PROJECT / {project.slug.toUpperCase()}</span><strong>{project.title.slice(0, 2).toUpperCase()}</strong><span>STATUS / {project.status.toUpperCase()}</span></div>}</div>}
+      {(project.links.deployment || project.links.repository || project.links.organization) && <div className="case-links shell">{project.links.deployment && <a href={project.links.deployment} target="_blank" rel="noreferrer">Launch live project <FiArrowUpRight aria-hidden="true" /></a>}{project.links.organization && <a href={project.links.organization} target="_blank" rel="noreferrer">Visit Lunix Luminous <FiArrowUpRight aria-hidden="true" /></a>}{project.links.repository && <a href={project.links.repository} target="_blank" rel="noreferrer">View repository <FiArrowUpRight aria-hidden="true" /></a>}</div>}
+      {project.links.deployment && <ProjectPreview url={project.links.deployment} title={project.title} />}
       <article className="case-content shell">
         {project.caseStudy.journey && <section className="case-block case-journey"><h2>How I became involved</h2><div className="case-list">{project.caseStudy.journey.map((phase, index) => <article key={phase.title}><span>{String(index + 1).padStart(2, "0")}</span><div><small>{phase.period}</small><h3>{phase.title}</h3><p>{phase.description}</p></div></article>)}</div></section>}
         <section className="case-intro"><div><p className="eyebrow">Context</p><h2>The starting point</h2></div><p>{project.caseStudy.context}</p></section>
@@ -44,7 +48,7 @@ export default async function ProjectPage({ params }: PageProps) {
         <ListSection title="Lessons learned" items={project.caseStudy.lessons} />
         {project.media?.map((item) => <figure className="case-media" key={item.src}><Image src={item.src} alt={item.alt} width={1400} height={350} sizes="(max-width: 800px) 100vw, 1180px" /><figcaption>{item.caption}</figcaption></figure>)}
       </article>
-      <nav className="case-nav shell" aria-label="Project navigation">{previous && <Link href={`/projects/${previous.slug}`}><span>Previous</span>{previous.title}</Link>}{next && <Link href={`/projects/${next.slug}`}><span>Next</span>{next.title} →</Link>}</nav>
+      <nav className="case-nav shell" aria-label="Project navigation">{previous && <Link href={`/projects/${previous.slug}`}><span>Previous</span>{previous.title}</Link>}{next && <Link href={`/projects/${next.slug}`}><span>Next</span>{next.title} <FiArrowRight aria-hidden="true" /></Link>}</nav>
     </main>
   );
 }

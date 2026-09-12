@@ -8,3 +8,4 @@ test-results/
 !.env.example
 .vercel/
 *.tsbuildinfo
+tmp/pdfs/
