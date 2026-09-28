@@ -68,7 +68,7 @@ Set `NEXT_PUBLIC_SITE_URL` to the production origin before deployment so canonic
 - Project `screenshots` records contain dimensions, captions, alt text, and source provenance. The DMIT gallery uses reviewed report figures from PDF pages 78, 79, 80, and 85, with browser chrome cropped. These are historical prototype screens, not claims about the current deployment. No actual fingerprint captures or environment credentials were exported.
 - `ProjectGallery` supports thumbnails, arrow keys, and an enlarged native dialog. `ProjectPreview` loads the HTTPS deployment only after launch. It does not bypass remote embedding restrictions; an external link remains available. Authentication, backend, and scanner workflows may not work within the sandboxed frame.
 - The contact form is a visual preview only: it neither submits nor saves data. Approved professional links remain usable.
-- `src/data/ecosystem.ts` keeps LabGround and Kisora's future scope distinct. Locked actions do not imply either destination is available.
+- `src/data/ecosystem.ts` keeps LabGround and Lumora's future scope distinct. Locked actions do not imply either destination is available.
 
 Run `node scripts/review-refinements.mjs` for the latest desktop/mobile component captures.
 
@@ -84,4 +84,4 @@ Use Lighthouse on production compilation, not the development server. Target 90+
 
 ## Product boundary
 
-Zesky Lab is the complete 2D personal portfolio. LabGround may reuse its content but owns a separate 3D presentation. Kisora Studio is a separate collaborative product and is represented here only through clearly attributed references.
+Zesky Lab is the complete 2D personal portfolio. LabGround may reuse its content but owns a separate 3D presentation. Lumora Studio is a separate collaborative product and is represented here only through clearly attributed references.

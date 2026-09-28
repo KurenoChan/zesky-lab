@@ -14,9 +14,9 @@ describe("portfolio repository", () => {
   });
 
   it("keeps collaborative work explicitly attributed", () => {
-    const kisora = getProjectBySlug("kisora-studio");
-    expect(kisora?.ownership).toBe("collaborative");
-    expect(kisora?.role).toMatch(/contributor/i);
+    const lumora = getProjectBySlug("lumora-studio");
+    expect(lumora?.ownership).toBe("collaborative");
+    expect(lumora?.role).toMatch(/contributor/i);
   });
 
   it("does not recommend the portfolio itself or unselected studio work", () => {

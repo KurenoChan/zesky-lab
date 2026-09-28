@@ -1,6 +1,6 @@
 # Zesky Lab visual direction
 
-This direction implements DEVROADMAP-117 within the ecosystem boundaries established by DEVROADMAP-2. Zesky Lab remains a complete 2D personal software-engineering portfolio; LabGround owns future 3D presentation, and Kisora Studio remains a separate collaborative destination.
+This direction implements DEVROADMAP-117 within the ecosystem boundaries established by DEVROADMAP-2. Zesky Lab remains a complete 2D personal software-engineering portfolio; LabGround owns future 3D presentation, and Lumora Studio remains a separate collaborative destination.
 
 ## Story premise
 
@@ -14,7 +14,7 @@ The visitor journey is:
 4. Open project terminals that explain decisions, not only outcomes; use the destination grid or dock to explore in any order.
 5. Learn who is behind the work and how ownership has grown.
 6. Review the engineering toolkit and active experiments.
-7. Notice Kisora as a connected but separate studio world.
+7. Notice Lumora as a connected but separate studio world.
 8. Make contact directly.
 
 Professional information remains available without understanding the metaphor.
@@ -62,7 +62,7 @@ DMIT means Dermatoglyphic Multiple Intelligence Test. Its case study is about en
 
 Sigma School remains a Software Engineer and Teaching Assistant internship from June 2026–Present, on-site in Puchong, Selangor: React, TypeScript, CMS, system testing/QA, and event planning. No unsupported impact metrics or additional internship projects are invented. The ceremony photo and full DMIT architecture, decisions, trade-offs, results, and lessons remain in the case study.
 
-The selected-work list and project neighbors exclude the portfolio itself and unselected Kisora work. Older project routes remain addressable to avoid breaking existing URLs. Kisora remains a separate collaborative destination, not a third portfolio presentation.
+The selected-work list and project neighbors exclude the portfolio itself and unselected Lumora work. Older project routes remain addressable to avoid breaking existing URLs. Lumora remains a separate collaborative destination, not a third portfolio presentation.
 
 ## Video-guided spacing and motion refinement (earlier iteration)
 
@@ -82,6 +82,6 @@ Impeccable, Taste, and Emil's design-engineering guidance informed a targeted re
 
 About now combines a replaceable grayscale portrait frame with the introduction and a five-stage working principle. Invitation cards have subtle content zoom. Chapter numbers are centered in concentric circles, with captions outside their bounds. Contact has a clearly disclosed non-submitting preview form alongside working professional links.
 
-LabGround precedes Kisora: abstract CSS geometry suggests the future shared-content 3D portfolio without introducing WebGL. Kisora uses a distinct plum/rose atmosphere and remains a separate collaborative world. Both have locked Coming soon actions and an expandable Explore the vision explanation; no destination URL is invented.
+LabGround precedes Lumora: abstract CSS geometry suggests the future shared-content 3D portfolio without introducing WebGL. Lumora uses a distinct plum/rose atmosphere and remains a separate collaborative world. Both have locked Coming soon actions and an expandable Explore the vision explanation; no destination URL is invented.
 
 Project detail pages now support a keyboard-operable screenshot gallery and opt-in sandboxed deployment preview. DMIT images are reviewed historical figures from report pages 78, 79, 80, and 85; browser chrome was cropped, and actual fingerprint captures were excluded. The preview never proxies around remote security policies and retains an external fallback. No contact endpoint or CMS was added.

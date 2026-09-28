@@ -6,9 +6,9 @@ export const futureDestinations = [
     vision: "LabGround will reuse this portfolio’s professional content, with spatial navigation, environmental storytelling, and a fox guide. Zesky Lab remains the complete, accessible 2D experience—no 3D required.",
   },
   {
-    id: "kisora", name: "Kisora Studio", label: "Beyond one person’s story",
+    id: "lumora", name: "Lumora Studio", label: "Beyond one person’s story",
     summary: "A gathering place for shared imagination. Games, AI initiatives, and community-built worlds—with warm rooms to discover and new stories beyond the door.",
-    vision: "The long-term vision is an anime-inspired browser world: an atmospheric studio, characters, project rooms, and journeys into collaborative productions. Kisora is a separate studio product. Team ownership and each person’s contribution will be credited explicitly.",
+    vision: "The long-term vision is an anime-inspired browser world: an atmospheric studio, characters, project rooms, and journeys into collaborative productions. Lumora is a separate studio product. Team ownership and each person’s contribution will be credited explicitly.",
   },
 ] as const;
 

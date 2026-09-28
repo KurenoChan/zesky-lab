@@ -5,7 +5,7 @@
 - Production build, ESLint, and strict TypeScript checks passed.
 - Five content unit tests passed.
 - Production browser regression: 37 passed, five intentionally skipped for device-specific behavior.
-- After the final Kisora image optimization, all ten refinement tests passed again against a fresh production server.
+- After the final Lumora image optimization, all ten refinement tests passed again against a fresh production server.
 - Representative homepage and DMIT axe checks found no serious or critical violations on desktop or mobile. This is not a full accessibility-conformance claim.
 - `git diff --check` passed; Git reported only Windows line-ending conversion warnings.
 - Production dependency audit reported zero vulnerabilities; this does not include development dependencies.
@@ -29,7 +29,7 @@ Local production compilation, default mobile simulation:
 | `/` after image optimization | 92 | 100 | 100 | 100 |
 | `/projects/dmit-frontend-web` | 95 | 100 | 100 | 100 |
 
-The initial homepage run scored 90. Investigation found the Kisora background loading the full original PNG; it now uses responsive Next Image delivery. The subsequent run scored 92, with 3.4s simulated LCP. Scores vary; the remaining LCP/main-thread work warrants monitoring on the deployed origin. Local results do not establish real-device or Vercel performance.
+The initial homepage run scored 90. Investigation found the Lumora background loading the full original PNG; it now uses responsive Next Image delivery. The subsequent run scored 92, with 3.4s simulated LCP. Scores vary; the remaining LCP/main-thread work warrants monitoring on the deployed origin. Local results do not establish real-device or Vercel performance.
 
 ## Boundaries and remaining validation
 

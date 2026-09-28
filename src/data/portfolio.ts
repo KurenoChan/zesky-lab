@@ -135,13 +135,13 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "kisora-studio",
-    title: "Kisora Studio",
+    slug: "lumora-studio",
+    title: "Lumora Studio",
     eyebrow: "Collaborative studio · Future",
     summary:
       "A separate community and studio direction for collaborative games, AI initiatives, and shared products.",
     description:
-      "Kisora is a shared destination, not another version of Zesky’s personal portfolio.",
+      "Lumora is a shared destination, not another version of Zesky’s personal portfolio.",
     role: "Contributor; individual responsibilities to be documented per project",
     ownership: "collaborative",
     status: "experimental",
@@ -149,7 +149,7 @@ export const projects: Project[] = [
     technologies: ["Games", "AI", "Community"],
     links: {},
     caseStudy: {
-      context: "Kisora Studio is intentionally separated from the personal portfolio architecture.",
+      context: "Lumora Studio is intentionally separated from the personal portfolio architecture.",
       objective: "Create a future home for work owned and built by multiple contributors.",
       architecture: [], implementation: [], challenges: [], decisions: [], tradeoffs: [], results: [], lessons: [],
     },

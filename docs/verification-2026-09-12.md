@@ -41,7 +41,7 @@ Reproduce screenshots with `scripts/review-portfolio.mjs`. Images and raw Lighth
 - Sigma School role, location, period, and supplied areas of work.
 - DMIT's FYP and contract phases, TAR UMT/Lunix Luminous attribution, scanner integration, architecture, case-study material, public deployment link, and ceremony photo.
 - The OS300 bridge lifecycle limitation and ZK9500 post-refactor validation caveat.
-- Separation of personal portfolio presentation from Kisora Studio collaboration.
+- Separation of personal portfolio presentation from Lumora Studio collaboration.
 
 No claims of resolved device issues, scientific validation, sole project ownership, new credentials, or invented impact metrics were added.
 

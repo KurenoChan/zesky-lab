@@ -20,14 +20,14 @@ test("chapter numbers are centered and captions sit outside the circles", async 
 test("future destinations distinguish portfolio and studio, with honest locked actions", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole('heading', { name: 'Zesky LabGround' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Kisora Studio' })).toBeVisible();
-  for (const card of ['.destination-labground', '.destination-kisora']) {
+  await expect(page.getByRole('heading', { name: 'Lumora Studio' })).toBeVisible();
+  for (const card of ['.destination-labground', '.destination-lumora']) {
     await expect(page.locator(card).getByRole('button', { name: 'Coming soon' })).toBeDisabled();
     await page.locator(card).locator('summary').click();
     await expect(page.locator(card).locator('details')).toHaveAttribute('open', '');
   }
   await expect(page.locator('.destination-labground details')).toContainText('reuse this portfolio');
-  await expect(page.locator('.destination-kisora details')).toContainText('separate studio product');
+  await expect(page.locator('.destination-lumora details')).toContainText('separate studio product');
   await expect(page.locator('.portrait-frame')).toBeVisible();
 });
 
